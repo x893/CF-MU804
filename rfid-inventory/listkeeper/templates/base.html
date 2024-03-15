@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}Listkeeper</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    {% load static %}
+
+    <link rel="stylesheet" href="/static/css/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" media="screen" />
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <script src="{% static "js/external/vue-2.6.11.js" %}"></script>
+    <script src="{% static "js/external/sortable-1.10.2.min.js" %}"></script>
+    <script src="{% static "js/external/vuedraggable-2.20.0.min.js" %}"></script>
+    <script src="{% static "js/external/axios-0.12.0.min.js" %}"></script>
+    <script src="{% static "js/external/lodash-4.13.1.min.js" %}"></script>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="section-{{ section }}">
+
+    {% block raw_content %}
+
+    <header>
+        <a href="/" class="logo"><b>rfid</b> inventory</a>
+        <nav>
+            <h2>Inventory</h2>
+            <a href="/items/" class="{% if section == "items" %}selected{% endif %}">Items</a>
+            <h2>Checklists</h2>
+            <a href="/checklists/runs/" class="{% if section == "checklist_runs" %}selected{% endif %}">Runs</a>
+            <a href="/checklists/templates/" class="{% if section == "checklist_templates" %}selected{% endif %}">Templates</a>
+            <h2>Settings</h2>
+            <a href="/devices/" class="{% if section == "devices" %}selected{% endif %}">Devices</a>
+            <a href="/labels/" class="{% if section == "labels" %}selected{% endif %}">Labels</a>
+            <a href="/locations/" class="{% if section == "locations" %}selected{% endif %}">Locations</a>
+        </nav>
+    </header>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+        <div class="clearfix"></div>
+    </div>
+
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Templates - {% endblock %}
+
+{% block content %}
+
+    <nav class="sub">
+        <a href="/checklists/templates/create/"><i class="fa fa-plus-square" aria-hidden="true"></i> Create Template</a>
+    </nav>
+
+    <table class="list">
+        <tr>
+            <th>Template</th>
+            <th>Items</th>
+            <th class="actions">Actions</th>
+        </tr>
+        {% for template in templates %}
+        <tr class="template">
+            <td class="name">
+                <a href="{{ template.urls.view }}">{{ template.name }}</a>
+            </td>
+            <td class="mode">
+                {{ template.items.count }}
+            </td>
+            <td class="actions">
+                <a href="{{ template.urls.view }}" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                <a href="{{ template.urls.view }}" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        {% empty %}
+            <tr class="empty"><td colspan="4">No templates yet.</td></tr>
+        {% endfor %}
+    </table>
+
+{% endblock content %}

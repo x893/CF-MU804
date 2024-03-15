@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="https://inventory.aeracode.org/api/device/sync/"
+        android:key="apiUrl"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Full address of endpoint"
+        android:title="API URL" />
+    <EditTextPreference
+        android:defaultValue=""
+        android:key="token"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Authentication token for this device"
+        android:title="API Token" />
+    <ListPreference
+        android:defaultValue="250"
+        android:key="powerLevel"
+        android:summary="%s"
+        android:entries="@array/powerLevelNames"
+        android:entryValues="@array/powerLevelValues"
+        android:title="Power Level" />
+
+</PreferenceScreen>

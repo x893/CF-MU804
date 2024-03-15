@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Create {{ noun.title }} - {% endblock %}
+
+{% block content %}
+
+    <h1>Create {{ noun.title }}</h1>
+
+    <section>
+        <form action="." method="POST" class="create create-{{ noun }}" enctype="multipart/form-data">
+            {{ form|crispy }}
+            {% csrf_token %}
+            <div class="buttons">
+                {% if add_another %}<button name="add-another">Create &amp; Add Another</button>{% endif %}
+                {% if next %}<button>Next</button>{% else %}<button>Create</button>{% endif %}
+            </div>
+        </form>
+    </section>
+
+{% endblock content %}
